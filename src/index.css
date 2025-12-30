@@ -1,0 +1,430 @@
+/* ============================================
+   LIFESPAN TRACKER — DESIGN SYSTEM
+   A calm, honest, contemplative aesthetic
+   ============================================ */
+
+/* --- Design Tokens --- */
+:root {
+  /* Colors — Neutral, warm, timeless */
+  --bg: #fafaf9;
+  --bg-secondary: #f5f5f4;
+  --text: #292524;
+  --text-muted: #78716c;
+  --text-light: #a8a29e;
+  
+  /* Grid colors */
+  --week-lived: #78716c;
+  --week-future: #e7e5e4;
+  --week-current: #44403c;
+  --week-current-glow: rgba(68, 64, 60, 0.3);
+  
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 4rem;
+  
+  /* Typography */
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  
+  /* Grid sizing */
+  --week-size: clamp(4px, 1.1vw, 8px);
+  --week-gap: 1px;
+  --week-radius: 1px;
+}
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* --- Layout --- */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-lg);
+  padding-top: var(--space-xl);
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  max-width: 480px;
+}
+
+.app-title {
+  font-size: var(--font-size-lg);
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: var(--space-sm);
+  letter-spacing: -0.01em;
+}
+
+.app-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* --- Input Form --- */
+.input-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+  width: 100%;
+  max-width: 320px;
+}
+
+.form-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.form-label {
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+}
+
+.form-input {
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--week-future);
+  border-radius: 4px;
+  font-size: var(--font-size-base);
+  font-family: inherit;
+  background: white;
+  color: var(--text);
+  transition: border-color 0.2s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--text-muted);
+}
+
+.form-error {
+  font-size: var(--font-size-xs);
+  color: #b91c1c;
+  margin-top: var(--space-xs);
+}
+
+.lifespan-display {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+}
+
+.lifespan-slider {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  background: var(--week-future);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.lifespan-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--week-lived);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.lifespan-slider::-webkit-slider-thumb:hover {
+  background: var(--week-current);
+}
+
+.lifespan-value {
+  font-size: var(--font-size-sm);
+  color: var(--text);
+  min-width: 60px;
+  text-align: right;
+}
+
+.form-actions {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+.btn {
+  padding: var(--space-sm) var(--space-lg);
+  border: none;
+  border-radius: 4px;
+  font-size: var(--font-size-sm);
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.btn-primary:hover {
+  background: var(--week-current);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--week-future);
+}
+
+.btn-secondary:hover {
+  border-color: var(--text-muted);
+  color: var(--text);
+}
+
+/* --- Summary Panel --- */
+.summary-panel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-lg);
+  padding: var(--space-lg);
+}
+
+.summary-item {
+  text-align: center;
+  min-width: 80px;
+}
+
+.summary-value {
+  font-size: var(--font-size-2xl);
+  font-weight: 300;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.summary-label {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: var(--space-xs);
+}
+
+/* --- Reflective Quote --- */
+.reflective-quote {
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  font-style: italic;
+  text-align: center;
+  margin-bottom: var(--space-lg);
+  max-width: 300px;
+}
+
+/* --- Life Grid Container --- */
+.life-grid-container {
+  width: 100%;
+  max-width: 800px;
+  overflow-x: auto;
+  padding: var(--space-md) 0;
+}
+
+/* --- Life Grid --- */
+.life-grid {
+  display: grid;
+  grid-template-columns: repeat(52, var(--week-size));
+  gap: var(--week-gap);
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.week {
+  width: var(--week-size);
+  height: var(--week-size);
+  border-radius: var(--week-radius);
+  transition: transform 0.1s ease;
+  cursor: default;
+}
+
+.week.lived {
+  background-color: var(--week-lived);
+}
+
+.week.future {
+  background-color: transparent;
+  border: 1px solid var(--week-future);
+  /* Adjust size for border */
+  width: calc(var(--week-size) - 2px);
+  height: calc(var(--week-size) - 2px);
+}
+
+.week.current {
+  background-color: var(--week-current);
+  box-shadow: 0 0 0 2px var(--week-current-glow);
+  position: relative;
+}
+
+.week:hover {
+  transform: scale(1.5);
+  z-index: 10;
+}
+
+/* Year markers (every 10 years) */
+.year-marker {
+  position: absolute;
+  left: -30px;
+  font-size: var(--font-size-xs);
+  color: var(--text-light);
+}
+
+/* --- Export Section --- */
+.export-section {
+  margin-top: var(--space-xl);
+  text-align: center;
+}
+
+.btn-export {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--week-future);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: 4px;
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-export:hover {
+  border-color: var(--text-muted);
+  color: var(--text);
+}
+
+/* --- Export Canvas (hidden, for generating PNG) --- */
+.export-canvas {
+  position: fixed;
+  left: -9999px;
+  top: -9999px;
+  width: 1080px;
+  min-height: 1080px;
+  background: var(--bg);
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.export-canvas .life-grid {
+  --week-size: 12px;
+  --week-gap: 2px;
+}
+
+.export-canvas .summary-panel {
+  margin-bottom: var(--space-xl);
+}
+
+.export-canvas .reflective-quote {
+  font-size: var(--font-size-lg);
+  max-width: 500px;
+}
+
+/* --- Tooltip --- */
+.tooltip {
+  position: fixed;
+  background: var(--text);
+  color: var(--bg);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: 4px;
+  font-size: var(--font-size-xs);
+  pointer-events: none;
+  z-index: 1000;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.tooltip.visible {
+  opacity: 1;
+}
+
+/* --- Responsive --- */
+@media (max-width: 600px) {
+  :root {
+    --week-size: clamp(3px, 1.3vw, 6px);
+  }
+  
+  .app {
+    padding: var(--space-md);
+    padding-top: var(--space-lg);
+  }
+  
+  .summary-panel {
+    gap: var(--space-md);
+    padding: var(--space-md);
+  }
+  
+  .summary-value {
+    font-size: var(--font-size-xl);
+  }
+  
+  .life-grid-container {
+    padding: var(--space-sm) 0;
+  }
+}
+
+@media (max-width: 400px) {
+  :root {
+    --week-size: 3px;
+  }
+  
+  .summary-item {
+    min-width: 60px;
+  }
+}
+
+/* --- Print Styles --- */
+@media print {
+  .input-form,
+  .export-section,
+  .btn {
+    display: none !important;
+  }
+  
+  .app {
+    padding: 20px;
+  }
+  
+  .life-grid {
+    --week-size: 6px;
+  }
+}
